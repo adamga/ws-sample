@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SciCalc</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <main>
+    <h1>SciCalc</h1>
+    <p>A scientific calculator that runs locally.</p>
+    <form>
+      <label for="expression">Expression</label>
+      <input id="expression" type="text" autocomplete="off" spellcheck="false" placeholder="e.g. sin(30) + 2^3" autofocus>
+      <output id="result" aria-live="polite">0</output>
+      <label for="angle-mode">Angle mode</label>
+      <select id="angle-mode">
+        <option value="deg">Degrees</option>
+        <option value="rad">Radians</option>
+      </select>
+      <div id="keys" class="keys">
+        <button type="button" data-insert="sin(">sin</button>
+        <button type="button" data-insert="cos(">cos</button>
+        <button type="button" data-insert="tan(">tan</button>
+        <button type="button" data-insert="(">(</button>
+        <button type="button" data-insert=")">)</button>
+        <button type="button" data-insert="asin(">asin</button>
+        <button type="button" data-insert="acos(">acos</button>
+        <button type="button" data-insert="atan(">atan</button>
+        <button type="button" data-insert="^">xʸ</button>
+        <button type="button" data-insert="/">÷</button>
+        <button type="button" data-insert="sqrt(">√</button>
+        <button type="button" data-insert="ln(">ln</button>
+        <button type="button" data-insert="log(">log</button>
+        <button type="button" data-insert="abs(">abs</button>
+        <button type="button" data-insert="*">×</button>
+        <button type="button" data-insert="7">7</button>
+        <button type="button" data-insert="8">8</button>
+        <button type="button" data-insert="9">9</button>
+        <button type="button" data-insert="pi">π</button>
+        <button type="button" data-insert="-">−</button>
+        <button type="button" data-insert="4">4</button>
+        <button type="button" data-insert="5">5</button>
+        <button type="button" data-insert="6">6</button>
+        <button type="button" data-insert="e">e</button>
+        <button type="button" data-insert="+">+</button>
+        <button type="button" data-insert="1">1</button>
+        <button type="button" data-insert="2">2</button>
+        <button type="button" data-insert="3">3</button>
+        <button type="button" data-insert="0">0</button>
+        <button type="button" data-insert=".">.</button>
+        <button type="button" data-action="clear" class="wide">Clear</button>
+        <button type="submit" class="wide calculate">=</button>
+      </div>
+    </form>
+    <p class="hint">Use explicit multiplication, such as 2*pi. Press Enter to calculate.</p>
+  </main>
+</body>
+</html>
