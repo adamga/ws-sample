@@ -1,0 +1,16 @@
+:root { color-scheme: light dark; font-family: system-ui, sans-serif; }
+body { margin: 0; padding: 2rem 1rem; background: #182332; color: #eef4fa; }
+main { max-width: 32rem; margin: auto; padding: 1.5rem; border-radius: 1rem; background: #263648; }
+h1 { margin: 0; }
+p { color: #c0cfdd; }
+form { display: grid; gap: .6rem; }
+input, select, button { font: inherit; border: 1px solid #71869b; border-radius: .4rem; }
+input, select { padding: .7rem; background: #152331; color: #fff; }
+output { min-height: 1.6em; overflow-wrap: anywhere; text-align: right; font-size: 1.35rem; }
+.keys { display: grid; grid-template-columns: repeat(5, 1fr); gap: .4rem; margin-top: .5rem; }
+button { padding: .7rem .2rem; cursor: pointer; background: #42586f; color: #fff; }
+button:hover { background: #56718c; }
+button:focus-visible, input:focus-visible, select:focus-visible { outline: 3px solid #8dd7ff; outline-offset: 2px; }
+.wide { grid-column: span 2; }
+.calculate { grid-column: span 3; background: #066e9c; }
+.hint { font-size: .9rem; }
