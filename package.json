@@ -1,0 +1,16 @@
+{
+  "name": "chat-explorer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A local, read-only, zero-dependency observatory for persisted VS Code and Copilot Agent chat sessions.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node --max-old-space-size=8192 src/server.js",
+    "dev": "node --max-old-space-size=8192 --watch src/server.js",
+    "test": "node --test",
+    "check": "node --check src/diff.js && node --check src/parser.js && node --check src/server.js && node --check src/library.js && node --check src/indexer.js && node --check public/icons.js && node --check public/markdown.js && node --check public/app.js"
+  }
+}

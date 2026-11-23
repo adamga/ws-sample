@@ -1,0 +1,318 @@
+1
+00:00:00,000 --> 00:00:05,417
+In lab zero, start the eight-minute
+block by opening the sampleapp folder
+
+2
+00:00:05,417 --> 00:00:05,833
+itself.
+
+3
+00:00:05,833 --> 00:00:08,000
+The session library already works.
+
+4
+00:00:08,000 --> 00:00:20,708
+You are extending this reader, not
+generating a new app or installing its
+
+5
+00:00:20,708 --> 00:00:21,667
+dependencies.
+
+6
+00:00:21,667 --> 00:01:01,167
+Check Node is at least version
+twenty-two, syntax-check the server and
+
+7
+00:01:01,167 --> 00:01:16,333
+run the native test suite.
+
+8
+00:01:16,333 --> 00:01:18,000
+Stop on a failure.
+
+9
+00:01:18,000 --> 00:01:31,125
+Choose a frontier model in Copilot
+Agent mode and keep the instructor's
+
+10
+00:01:31,125 --> 00:01:36,167
+connection sheet private for later.
+
+11
+00:01:36,167 --> 00:01:44,625
+Use the lab one prompts in default
+Agent mode.
+
+12
+00:01:44,625 --> 00:01:49,458
+Spend ten minutes creating the
+developer, tester, security and
+
+13
+00:01:49,458 --> 00:01:54,792
+documentation workers, five on the
+orchestrator, and two inspecting the
+
+14
+00:01:54,792 --> 00:01:55,333
+result.
+
+15
+00:01:55,333 --> 00:02:29,583
+Only the orchestrator is
+user-invocable.
+
+16
+00:02:29,583 --> 00:02:42,750
+Look for five agents and no YAML
+warnings.
+
+17
+00:02:42,750 --> 00:02:48,375
+Read the security tools list: read and
+search only.
+
+18
+00:02:48,375 --> 00:03:16,333
+Now check the lead: read, search, agent
+and todo.
+
+19
+00:03:16,333 --> 00:03:21,208
+If the lead can edit files, fix that
+before you rely on delegation.
+
+20
+00:03:21,208 --> 00:03:25,792
+Over the next fifteen minutes, create
+the four skill folders.
+
+21
+00:03:25,792 --> 00:03:31,917
+Match each name to its parent folder
+exactly.
+
+22
+00:03:31,917 --> 00:03:46,917
+Attach zero-package engineering to the
+developer and Foundry OAuth testing to
+
+23
+00:03:46,917 --> 00:03:54,417
+the tester using their skills arrays.
+
+24
+00:03:54,417 --> 00:04:07,667
+Attach the security audit and handoff
+documentation skills to their
+
+25
+00:04:07,667 --> 00:04:10,333
+respective workers.
+
+26
+00:04:10,333 --> 00:04:16,708
+Confirm all four in Customizations,
+then start a new chat and select
+
+27
+00:04:16,708 --> 00:04:17,792
+Chronicle Orchestrator.
+
+28
+00:04:17,792 --> 00:04:22,667
+From now on, give feature requests to
+the lead, not individual workers.
+
+29
+00:04:22,667 --> 00:04:28,333
+During the fifteen-minute connectivity
+lab, ask the lead for the agentconfig
+
+30
+00:04:28,333 --> 00:04:31,167
+guides, server routes and settings
+dialog.
+
+31
+00:04:31,167 --> 00:04:36,417
+After security and test sign-off, start
+the server and open the loopback
+
+32
+00:04:36,417 --> 00:04:38,833
+address on port thirty-two ten.
+
+33
+00:04:38,833 --> 00:04:51,708
+Click Summary agent.
+
+34
+00:04:51,708 --> 00:05:03,708
+Enter the five supplied values
+privately and save to dot env.
+
+35
+00:05:03,708 --> 00:05:18,792
+Test the connection and look for READY
+plus separate Entra and Foundry
+
+36
+00:05:18,792 --> 00:05:20,042
+timings.
+
+37
+00:05:20,042 --> 00:05:35,250
+Open the connectivity log and confirm
+no secret or bearer token appears
+
+38
+00:05:35,250 --> 00:05:39,042
+before copying it.
+
+39
+00:05:39,042 --> 00:05:44,208
+Lab four gives you twelve minutes to
+dispatch the summarizer change and six
+
+40
+00:05:44,208 --> 00:05:45,375
+to try it.
+
+41
+00:05:45,375 --> 00:05:58,042
+Restart the updated server.
+
+42
+00:05:58,042 --> 00:06:13,792
+Open an approved multi-turn session,
+choose Create session summary and watch
+
+43
+00:06:13,792 --> 00:06:17,708
+the progress phases.
+
+44
+00:06:17,708 --> 00:06:20,792
+Missing settings should send you back
+to configuration.
+
+45
+00:06:20,792 --> 00:06:24,042
+Open the operation log while the job
+runs.
+
+46
+00:06:24,042 --> 00:06:28,417
+In this fixture, the route checks
+passed but the sample client still
+
+47
+00:06:28,417 --> 00:06:29,167
+needs updating.
+
+48
+00:06:29,167 --> 00:06:39,542
+Check your own saved Markdown for an
+equally concrete outcome and next step,
+
+49
+00:06:39,542 --> 00:06:45,125
+not just a recap of conversation
+topics.
+
+50
+00:06:45,125 --> 00:06:57,875
+Open the generated summary.
+
+51
+00:06:57,875 --> 00:07:24,542
+Pick a file path and confirm that it
+makes sense from the workspace root on
+
+52
+00:07:24,542 --> 00:07:28,083
+another machine.
+
+53
+00:07:28,083 --> 00:07:48,875
+Find an unfinished item and the command
+or test that would verify it.
+
+54
+00:07:48,875 --> 00:07:56,042
+Leave the original session untouched.
+
+55
+00:07:56,042 --> 00:08:00,750
+Use lab five's seventeen minutes to
+finish the browser release.
+
+56
+00:08:00,750 --> 00:08:05,833
+Copy the reference icon renderer into
+build, or inspect an existing copy.
+
+57
+00:08:05,833 --> 00:08:14,542
+Have the lead generate the icon, copy
+the PNG into public, and update the
+
+58
+00:08:14,542 --> 00:08:18,250
+favicon link without changing the
+server.
+
+59
+00:08:18,250 --> 00:08:40,625
+Syntax-check the renderer and run the
+suite.
+
+60
+00:08:40,625 --> 00:09:05,583
+Restart the browser app, open the icon
+URL directly, then reopen a
+
+61
+00:09:05,583 --> 00:09:07,667
+conversation.
+
+62
+00:09:07,667 --> 00:09:10,792
+Try a fresh tab if the favicon is
+stale.
+
+63
+00:09:10,792 --> 00:09:15,667
+Only count a live summary if you
+actually used the configured agent.
+
+64
+00:09:15,667 --> 00:09:33,583
+Stop your server.
+
+65
+00:09:33,583 --> 00:09:39,083
+Review the desktop reference to see the
+sandbox, narrow preload bridge and
+
+66
+00:09:39,083 --> 00:09:40,458
+separate backend process.
+
+67
+00:09:40,458 --> 00:09:41,958
+No installer is built.
+
+68
+00:09:41,958 --> 00:09:47,375
+Your finish line is a working browser
+app, a locally served icon, and a
+
+69
+00:09:47,375 --> 00:09:49,292
+summary another developer can use.

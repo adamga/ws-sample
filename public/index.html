@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101413">
+  <title>Chronicle / Chat Explorer</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23c7f5a1'/%3E%3Cpath d='M21 10a8 8 0 1 0 0 12M11 16h12' fill='none' stroke='%23101413' stroke-width='3'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/styles.css">
+  <script defer src="/icons.js"></script>
+  <script defer src="/markdown.js"></script>
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="rail" aria-label="Application">
+      <a class="brand-mark" href="/" title="Chronicle home"><i data-lucide="orbit"></i></a>
+      <button class="rail-button active" id="home-button" title="Session overview" aria-label="Session overview"><i data-lucide="panels-top-left"></i></button>
+      <button class="rail-button" id="story-button" title="Read full session" aria-label="Read full session"><i data-lucide="book-open"></i></button>
+      <button class="rail-button" id="library-button" title="Session library" aria-label="Session library"><i data-lucide="library"></i></button>
+      <button class="rail-button" id="global-search-button" title="Search all sessions (Ctrl+Shift+F)" aria-label="Search all sessions"><i data-lucide="text-search"></i></button>
+      <div class="rail-line"></div>
+      <button class="rail-button" id="models-button" title="Model timeline" aria-label="Model timeline"><i data-lucide="cpu"></i></button>
+      <div class="rail-bottom">
+        <button class="rail-button" id="theme-button" title="Toggle color theme" aria-label="Toggle color theme"><i data-lucide="sun"></i></button>
+        <button class="rail-button" id="help-button" title="About and shortcuts" aria-label="About and shortcuts"><i data-lucide="circle-help"></i></button>
+        <span class="local-dot" title="Local only"></span>
+      </div>
+    </nav>
+    <header class="topbar">
+      <div class="wordmark">chronicle<span class="wordmark-divider">/</span><span class="product-label">CHAT EXPLORER</span><span class="beta">LOCAL</span></div>
+      <form class="global-search" id="global-search-form" role="search"><i data-lucide="search"></i><input id="global-search" type="search" placeholder="Search every conversation..." aria-label="Search sessions" autocomplete="off" spellcheck="false"><select id="search-scope" aria-label="Search scope"><option value="all">All sessions</option><option value="session">This session</option></select><kbd>Ctrl ⇧ F</kbd></form>
+      <div class="top-actions">
+        <span class="privacy"><span class="status-dot"></span> Your history. On your machine.</span>
+        <button class="button import-button" id="open-button" title="Open VS Code workspaceStorage sessions (Ctrl+O)"><i data-lucide="folder-plus"></i><span class="open-btn-label">Open session</span></button>
+        <button class="button import-button agent-import-button" id="open-agent-button" title="Open Agent Host / Copilot CLI sessions (.copilot\session-state)"><i data-lucide="bot"></i><span class="open-btn-label">Agent sessions</span></button>
+      </div>
+    </header>
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-top">
+        <div class="eyebrow"><span id="sidebar-eyebrow">LIBRARY</span><i data-lucide="hard-drive"></i></div>
+        <button class="back-to-library" id="back-to-library" hidden><i data-lucide="arrow-left"></i> All sessions</button>
+        <div class="sidebar-session-title" id="sidebar-title">Your conversations</div>
+        <div class="index-progress" id="index-progress" hidden><div class="index-bar"><span id="index-bar-fill"></span></div><span id="index-label">Indexing...</span></div>
+        <div class="sidebar-subline"><span id="session-count">Local session library</span><span class="readonly"><i data-lucide="lock-keyhole"></i> Read only</span></div>
+      </div>
+      <div class="tree-heading"><span id="tree-heading-label">SESSIONS</span><div><button class="icon-button" id="collapse-button" title="Collapse all" aria-label="Collapse all"><i data-lucide="fold-vertical"></i></button><button class="icon-button" id="expand-button" title="Expand prompts" aria-label="Expand prompts"><i data-lucide="unfold-vertical"></i></button></div></div>
+      <div class="search-wrap"><i data-lucide="search"></i><input id="search" type="search" placeholder="Filter sessions..." aria-label="Filter"><kbd>Ctrl K</kbd></div>
+      <div class="library-sort-bar" id="library-sort-bar"><label for="sidebar-sort"><i data-lucide="arrow-up-down"></i> Sort</label><select id="sidebar-sort" aria-label="Sort sessions"><option value="date-desc">Date (Newest first)</option><option value="date-asc">Date (Oldest first)</option><option value="name-asc">Name (A → Z)</option><option value="name-desc">Name (Z → A)</option></select></div>
+      <div class="filters" id="filters" aria-label="Filter item types">
+        <button class="filter active" data-filter="all">All activity</button><button class="filter" data-filter="response">Messages</button><button class="filter" data-filter="tool">Tools</button><button class="filter" data-filter="edit">Edits</button><button class="filter" data-filter="reasoning">Thoughts</button>
+      </div>
+      <div class="tree-scroll" id="tree-scroll"><div class="loading-state"><span class="spinner"></span> Reading local history...</div></div>
+      <div class="sidebar-footer"><span class="status-dot"></span><span id="tree-status">Reconstructing session</span><span class="format-tag">VS CODE</span></div>
+      <div id="resize-handle" class="resize-handle" role="separator" aria-label="Resize explorer" aria-orientation="vertical" tabindex="0"></div>
+    </aside>
+    <main id="main">
+      <div class="breadcrumb-bar"><div id="breadcrumb">Sessions <span>/</span> Overview</div><div class="breadcrumb-actions"><button class="icon-button" id="previous-button" title="Previous item" aria-label="Previous item"><i data-lucide="arrow-up"></i></button><button class="icon-button" id="next-button" title="Next item" aria-label="Next item"><i data-lucide="arrow-down"></i></button><span class="separator"></span><button class="icon-button" id="export-button" title="Export reconstructed session JSON" aria-label="Export session"><i data-lucide="download"></i></button></div></div>
+      <div class="reader-scroll" id="reader"><div class="loading-state"><span class="spinner"></span> Opening your session...</div></div>
+    </main>
+    <footer class="statusbar"><div><i data-lucide="git-branch"></i><span>Persisted history</span><span class="statusbar-divider"></span><span id="bottom-source">No source selected</span></div><div><span class="status-dot"></span> No cloud. No telemetry. <span class="statusbar-divider"></span><span>CHRONICLE v1.0</span></div></footer>
+  </div>
+  <dialog id="open-dialog">
+    <form id="open-form">
+      <div class="dialog-icon"><i data-lucide="folder-open"></i></div><button type="button" class="icon-button dialog-close" data-close="open-dialog" aria-label="Close"><i data-lucide="x"></i></button>
+      <div class="eyebrow accent">VS CODE · WORKSPACESTORAGE</div><h2>Open VS Code chat sessions.</h2><p>Open your local VS Code <code>workspaceStorage</code> folder or an individual session file. Defaulted to this device's standard VS Code storage path.</p>
+      <div class="label-row"><label for="path-input">VS CODE STORAGE FOLDER OR SESSION FILE</label><button type="button" class="link-button" id="reset-vscode-default">Reset to device default</button></div>
+      <div class="path-row"><input id="path-input" placeholder="C:\...\AppData\Roaming\Code\User\workspaceStorage" required autocomplete="off" spellcheck="false"></div>
+      <div class="path-hint"><i data-lucide="info"></i><span>Accepts <code>workspaceStorage</code>, a workspace hash folder, <code>chatSessions</code>, <code>state.vscdb</code>, or a <code>.jsonl / .json</code> file.</span></div>
+      <div class="dialog-switch-box"><i data-lucide="bot"></i><span>Using VS Code Agent Host or Copilot CLI?</span><button type="button" class="link-button" data-open-agent>Open Agent Host browser →</button></div>
+      <div class="dialog-error" id="import-error" role="alert"></div>
+      <div class="dialog-footer"><span><i data-lucide="shield-check"></i> Never uploaded anywhere</span><button class="button primary" id="import-submit" type="submit">Explore session <i data-lucide="arrow-up-right"></i></button></div>
+    </form>
+  </dialog>
+  <dialog id="open-agent-dialog">
+    <form id="open-agent-form">
+      <div class="dialog-icon"><i data-lucide="bot"></i></div><button type="button" class="icon-button dialog-close" data-close="open-agent-dialog" aria-label="Close"><i data-lucide="x"></i></button>
+      <div class="eyebrow accent">AGENT HOST &amp; COPILOT CLI · SESSION-STATE</div><h2>Open Agent Host / CLI sessions.</h2><p>Discover and explore persisted Agent Host &amp; Copilot CLI sessions (<code>events.jsonl</code> + <code>workspace.yaml</code>). Defaulted to this device's <code>.copilot\session-state</code> directory.</p>
+      <div class="label-row"><label for="agent-path-input">AGENT SESSION-STATE FOLDER OR FILE</label><button type="button" class="link-button" id="reset-agent-default">Reset to device default</button></div>
+      <div class="path-row"><input id="agent-path-input" class="dialog-input" placeholder="C:\Users\you\.copilot\session-state" required autocomplete="off" spellcheck="false"></div>
+      <div class="path-hint"><i data-lucide="info"></i><span>Accepts <code>.copilot\session-state</code>, an individual session UUID directory, <code>events.jsonl</code>, or <code>workspace.yaml</code>.</span></div>
+      <div class="dialog-switch-box"><i data-lucide="folder-open"></i><span>Looking for classic VS Code Chat panel history?</span><button type="button" class="link-button" data-open>← Open VS Code storage browser</button></div>
+      <div class="dialog-error" id="agent-import-error" role="alert"></div>
+      <div class="dialog-footer"><span><i data-lucide="shield-check"></i> Read-only local access</span><button class="button primary" id="agent-import-submit" type="submit">Explore agent sessions <i data-lucide="arrow-up-right"></i></button></div>
+    </form>
+  </dialog>
+  <dialog id="help-dialog"><div class="help-content"><button class="icon-button dialog-close" data-close="help-dialog" aria-label="Close"><i data-lucide="x"></i></button><div class="eyebrow accent">UNDER THE SURFACE</div><h2>The full story, faithfully restored.</h2><p>Chronicle replays VS Code's persisted session log and Copilot Agent event streams, joining available transcripts, debug events, model metadata, and editing checkpoints.</p><p>Reasoning is shown only when its text was actually saved. Opaque reasoning IDs cannot be decoded. Compacted, missing, or truncated source data cannot be recovered; raw records and source warnings remain available.</p><dl class="shortcut-list"><dt>Focus search</dt><dd><kbd>Ctrl / Cmd K</kbd></dd><dt>Navigate the tree</dt><dd><kbd>↑ ↓ Home End</kbd></dd><dt>Expand / collapse</dt><dd><kbd>→ ←</kbd></dd><dt>Open item</dt><dd><kbd>Enter</kbd></dd><dt>Close dialog</dt><dd><kbd>Esc</kbd></dd></dl><p class="muted">Local-only server. Read-only source access. No tool execution. Imported paths are remembered locally.</p></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

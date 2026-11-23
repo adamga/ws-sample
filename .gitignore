@@ -1,0 +1,14 @@
+node_modules/
+.chat-explorer.json
+.chat-explorer.json.*.tmp
+test-results/
+playwright-report/
+.playwright-mcp/
+*.log
+dist/
+.chat-explorer-cache/
+.env
+.env.*
+!.env.example
+summaries/
+
